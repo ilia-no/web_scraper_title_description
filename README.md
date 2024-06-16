@@ -8,7 +8,7 @@ This app scrapes title & description from website's metadata. Proxies and captch
 
 ## Start
 
-```bash start.py```
+```bash start.sh```
 
 ### Input data
  - URLS should be contained in csv files
