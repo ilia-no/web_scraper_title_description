@@ -11,5 +11,5 @@ This app scrapes title & description from website's metadata. Proxies and captch
 ```bash start.sh```
 
 ### Input data
- - URLS should be contained in csv files
+ - URLS should be contained in csv file
  - Proxies should be in txt file line by line
