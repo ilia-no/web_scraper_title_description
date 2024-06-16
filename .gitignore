@@ -10,3 +10,4 @@ venv
 *.env
 .ipynb_checkpoints
 .cache
+data
