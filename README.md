@@ -1,2 +1,15 @@
-# web_scraper_title_description
-# web_scraper_title_description
+# Title & Description Web Scraper
+
+This app scrapes title & description from website's metadata. Proxies and captcha resolvers are supported. UI is made by Streamlit.
+
+## Installation
+
+```bash install.sh```
+
+## Start
+
+```bash start.py```
+
+### Input data
+ - URLS should be contained in csv files
+ - Proxies should be in txt file line by line
