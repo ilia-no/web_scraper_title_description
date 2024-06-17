@@ -98,7 +98,7 @@ if csv_file or st.session_state.get('analisys_df') is not None:
 
 
     with tab2:
-        st.text("Errors Types on bar plot")
+        st.text("Errors Types")
         s = df['error'].value_counts().reset_index()
         s.columns = ['Category', 'Counts']
         st.dataframe(s)
