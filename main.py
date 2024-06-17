@@ -62,7 +62,7 @@ st.title(APP_TITLE)
 
 st.subheader('Load website urls')
 urls_file = st.file_uploader("Upload .csv file with urls", type=['csv'])
-if urls_file:
+if urls_file or st.session_state.get('urls_file'):
     st.session_state['urls_file'] = urls_file
     if not st.session_state.get('all_urls'):
         st.session_state['all_urls'] = get_urls(load_file(urls_file))
@@ -86,6 +86,7 @@ if urls_file:
         load_urls(urls_file, start=urls_start_index, end=urls_end_index, column_name=urls_column_name, sep=urls_sep)
         st.text(f"{len(st.session_state['urls'])} urls successfully loaded")
 
+    if st.session_state.get('urls'):
         st.dataframe(
             pd.DataFrame(st.session_state['urls'], columns=['urls'], index=range(urls_start_index, urls_end_index)),
             column_config={
