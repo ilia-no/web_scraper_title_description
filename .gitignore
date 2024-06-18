@@ -12,3 +12,4 @@ venv
 .cache
 data
 data/*
+*.ipynb
