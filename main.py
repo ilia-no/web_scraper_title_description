@@ -9,6 +9,7 @@ import os
 import pandas as pd
 import multiprocessing as mp
 import dotenv
+import time
 
 
 APP_TITLE = "Title & Description Scraper"
@@ -216,9 +217,10 @@ if st.button('Run', key="start_scraping", use_container_width=True):
 
 
     st.text(f'Scraping started. {len(st.session_state["urls"])} urls' + f', {len(proxies)} proxies' if int(os.getenv('USE_PROXIES')) else '')
+    start_ts = time.time()
     results = fetch_meta_mp(st.session_state['urls'], n_jobs=threads_amount)
     output_file = json_list_to_bytes_file(results)
 
     st.download_button('Download scraped data', output_file, 'Scraped Data.csv', key='download_output')
-    st.text("Scraping finished")
+    st.text("Scraping finished. Done in {:.2f} seconds".format(time.time() - start_ts))
 
