@@ -52,6 +52,9 @@ def load_file(file):
 def load_urls(file, start=1, end=None, column_name='Location on Site', sep=','):
     st.session_state['urls'] = get_urls(load_file(file), start=start - 1, end=end - 1, column_name=column_name, sep=sep)
     
+def get_lines_amount(file):
+    return len([line for line in file.readlines() if line])
+
 
 if not dotenv_file:
     set_default_settings()
@@ -65,16 +68,14 @@ st.subheader('Load website urls')
 urls_file = st.file_uploader("Upload .csv file with urls", type=['csv'])
 if urls_file or st.session_state.get('urls_file'):
     st.session_state['urls_file'] = urls_file
-    if not st.session_state.get('all_urls'):
-        st.session_state['all_urls'] = get_urls(load_file(urls_file))
         
     col1, col2 = st.columns(2)
 
     with col1:
-        urls_start_index = st.number_input('Start row index (URLs)', min_value=1, max_value=len(st.session_state['all_urls']) + 1, value=1, key='start')
+        urls_start_index = st.number_input('Start row index (URLs)', min_value=1, max_value=get_lines_amount(load_file(urls_file)) - 1, value=1, key='start')
     
     with col2:
-        urls_end_index = st.number_input('End row index (URLs)', min_value=1, max_value=len(st.session_state['all_urls']) + 1, value=len(st.session_state['all_urls']) + 1, key='end')
+        urls_end_index = st.number_input('End row index (URLs)', min_value=1, max_value=get_lines_amount(load_file(urls_file)) - 1, value=get_lines_amount(load_file(urls_file)) - 1, key='end')
     
     col3, col4 = st.columns(2)
     with col3:
@@ -84,6 +85,9 @@ if urls_file or st.session_state.get('urls_file'):
         urls_column_name = st.text_input('Column name', value='Location on Site', key='column_name')
 
     if st.button('Load urls', key='slice_urls'):
+        if not st.session_state.get('all_urls') and urls_file == st.session_state.get('urls_file'):
+            st.session_state['all_urls'] = get_urls(load_file(urls_file), column_name=urls_column_name, sep=urls_sep)
+
         load_urls(urls_file, start=urls_start_index, end=urls_end_index, column_name=urls_column_name, sep=urls_sep)
         st.text(f"{len(st.session_state['urls'])} urls successfully loaded")
 
