@@ -24,7 +24,7 @@ def autopct_format(values):
 
 st.title('Results Analisys')
 
-st.subheader('Load results file to analisys')
+st.subheader('Load results file to analyze errors and missing data.')
 csv_file = st.file_uploader("", type=['csv'])
 if csv_file or st.session_state.get('analisys_df') is not None:
     if st.session_state.get('analisys_df') is None:
