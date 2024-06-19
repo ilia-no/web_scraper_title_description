@@ -1,6 +1,6 @@
 # Title & Description Web Scraper
 
-Scraper App with UI that scrapes title & description from website's metadata. Proxies and captcha resolvers are supported. Supported by Streamlit & Cloudscraper
+Scraper App with UI that scrapes title & description from website's metadata. Proxies and captcha resolvers are supported. Made by Streamlit & Cloudscraper
 
 ## Speed
 6.1 urls per second (13 threads, tested on 1000 urls, no proxies, 18 timeouts or other errors)
